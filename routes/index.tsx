@@ -1,135 +1,414 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { Layout, PHONE, PHONE_HREF } from "@/components/Layout";
-import { useLang } from "@/lib/i18n";
-import { ArrowRight, Sparkles, ShieldCheck, Star, Phone } from "lucide-react";
-import heroAsset from "@/assets/IMG_4867.jpg.asset.json";
-import g1Asset from "@/assets/IMG_4869.jpg.asset.json";
-import g2Asset from "@/assets/IMG_4867.jpg.asset.json";
-import g3Asset from "@/assets/IMG_4865.jpg.asset.json";
-import mascotAsset from "@/assets/mascot.png.asset.json";
-const hero = heroAsset.url;
-const g1 = g1Asset.url;
-const g2 = g2Asset.url;
-const g3 = g3Asset.url;
-
+import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "New Era Party & Event Rentals | Luxury LA Party Rentals" },
-      { name: "description", content: "Luxury tents, chairs, tables, linens, lighting & more for weddings, quinceañeras and events in Los Angeles. Free quote — call (323) 480-0660." },
-      { property: "og:title", content: "New Era Party & Event Rentals" },
-      { property: "og:description", content: "Luxury party & event rentals in East Los Angeles." },
-    ],
-  }),
   component: Home,
 });
 
 function Home() {
-  const { t } = useLang();
   return (
-    <Layout>
+    <div
+      style={{
+        minHeight: "100vh",
+        fontFamily: "Arial, sans-serif",
+        color: "#222",
+        background: "#fff",
+      }}
+    >
+      {/* NAVBAR */}
+      <header
+        style={{
+          position: "sticky",
+          top: 0,
+          zIndex: 10,
+          background: "#fff",
+          borderBottom: "1px solid #eee",
+          padding: "18px 6%",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <div>
+          <h2 style={{ margin: 0 }}>New Era Party Rentals</h2>
+          <p style={{ margin: "4px 0 0", fontSize: 13, color: "#777" }}>
+            Make your event unforgettable
+          </p>
+        </div>
+
+        <nav style={{ display: "flex", gap: 25, alignItems: "center" }}>
+          <a href="#services" style={linkStyle}>
+            Services
+          </a>
+          <a href="#about" style={linkStyle}>
+            About
+          </a>
+          <a href="#contact" style={linkStyle}>
+            Contact
+          </a>
+          <a href="#book" style={buttonStyle}>
+            Book Now
+          </a>
+        </nav>
+      </header>
+
       {/* HERO */}
-      <section className="relative min-h-[92vh] flex items-center overflow-hidden">
-        <img src={hero} alt="Rows of white chairs and canopies set up for an outdoor event" className="absolute inset-0 w-full h-full object-cover" width={1600} height={900} />
-        <div className="absolute inset-0" style={{ background: "var(--gradient-hero)" }} />
-        <div className="absolute inset-0 bg-background/40" />
-        <img
-          src={mascotAsset.url}
-          alt="New Era Party & Event Rentals mascot"
-          className="pointer-events-none select-none absolute bottom-0 right-0 md:-right-4 lg:right-0 h-[52vh] md:h-[82vh] w-auto object-contain drop-shadow-2xl z-10 hidden md:block"
-          width={422}
-          height={836}
-        />
+      <section
+        style={{
+          minHeight: "600px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          textAlign: "center",
+          padding: "80px 6%",
+          background:
+            "linear-gradient(135deg, #111 0%, #292929 50%, #111 100%)",
+          color: "white",
+        }}
+      >
+        <div style={{ maxWidth: 850 }}>
+          <p
+            style={{
+              textTransform: "uppercase",
+              letterSpacing: 3,
+              fontWeight: "bold",
+              marginBottom: 20,
+            }}
+          >
+            New Era Party Rentals
+          </p>
 
-        <div className="relative mx-auto max-w-7xl px-5 md:px-8 py-24 w-full">
-          <div className="max-w-3xl md:max-w-[58%] relative z-20">
-            <div className="inline-flex items-center gap-2 rounded-full border border-primary/40 bg-background/40 backdrop-blur px-4 py-1.5 text-xs uppercase tracking-widest text-primary">
-              <Sparkles className="w-3.5 h-3.5" /> {t("Los Angeles • Since Day One", "Los Ángeles • Desde el primer día")}
-            </div>
-            <h1 className="mt-6 font-display text-5xl md:text-7xl font-bold leading-[1.05]">
-              {t("Turning moments into", "Convertimos momentos en")} <span className="text-gradient-gold">{t("unforgettable", "inolvidables")}</span> {t("events.", "eventos.")}
-            </h1>
-            <p className="mt-6 text-lg text-muted-foreground max-w-xl">
-              {t("Premium party & event rentals for weddings, quinceañeras, birthdays and corporate gatherings across greater Los Angeles.", "Rentas premium para bodas, quinceañeras, cumpleaños y eventos corporativos en todo Los Ángeles.")}
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link to="/quote" className="inline-flex items-center gap-2 rounded-full bg-gradient-gold text-primary-foreground px-7 py-3.5 font-semibold shadow-gold">
-                {t("Request a Quote", "Pedir Cotización")} <ArrowRight className="w-4 h-4" />
-              </Link>
-              <a href={PHONE_HREF} className="inline-flex items-center gap-2 rounded-full border border-primary/50 text-foreground px-7 py-3.5 font-semibold hover:bg-primary/10">
-                <Phone className="w-4 h-4" /> {PHONE}
-              </a>
-            </div>
-            <div className="mt-10 flex items-center gap-2 text-sm text-muted-foreground">
-              <div className="flex gap-0.5 text-primary">
-                {Array.from({ length: 5 }).map((_, i) => <Star key={i} className="w-4 h-4 fill-current" />)}
-              </div>
-              <span>{t("5.0 rating on Google — trusted by East LA families", "5.0 estrellas en Google — la confianza de las familias del Este de LA")}</span>
-            </div>
+          <h1
+            style={{
+              fontSize: "clamp(45px, 7vw, 80px)",
+              lineHeight: 1.05,
+              margin: "0 0 25px",
+            }}
+          >
+            Your Party.
+            <br />
+            Your Style.
+            <br />
+            <span style={{ color: "#f5c542" }}>Your New Era.</span>
+          </h1>
+
+          <p
+            style={{
+              fontSize: 20,
+              lineHeight: 1.6,
+              color: "#ddd",
+              maxWidth: 650,
+              margin: "0 auto 35px",
+            }}
+          >
+            Premium party rentals for birthdays, weddings, celebrations,
+            corporate events, and unforgettable moments.
+          </p>
+
+          <div
+            style={{
+              display: "flex",
+              gap: 15,
+              justifyContent: "center",
+              flexWrap: "wrap",
+            }}
+          >
+            <a
+              href="#book"
+              style={{
+                ...buttonStyle,
+                background: "#f5c542",
+                color: "#111",
+                padding: "16px 30px",
+                fontSize: 16,
+              }}
+            >
+              Book Your Event
+            </a>
+
+            <a
+              href="#services"
+              style={{
+                ...buttonStyle,
+                background: "transparent",
+                color: "white",
+                border: "1px solid white",
+                padding: "16px 30px",
+                fontSize: 16,
+              }}
+            >
+              View Rentals
+            </a>
           </div>
         </div>
       </section>
 
-      {/* VALUE STRIP */}
-      <section className="border-y border-border bg-card/40">
-        <div className="mx-auto max-w-7xl px-5 md:px-8 py-10 grid gap-8 md:grid-cols-3">
-          {[
-            { icon: Sparkles, title: t("Curated Luxury", "Lujo Seleccionado"), body: t("White chairs, black chairs, resting chairs, elegant canopies and linens.", "Sillas blancas, negras, de descanso, toldos elegantes y manteles.") },
-            { icon: ShieldCheck, title: t("Fully Insured", "Totalmente Asegurados"), body: t("Professional delivery, setup and pickup — stress-free.", "Entrega, instalación y recolección profesional — sin estrés.") },
-            { icon: Star, title: t("5-Star Service", "Servicio 5 Estrellas"), body: t("Local East LA team obsessed with your event's success.", "Equipo local del Este de LA dedicado al éxito de su evento.") },
-          ].map(({ icon: Icon, title, body }) => (
-            <div key={title} className="flex gap-4">
-              <div className="w-11 h-11 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center shrink-0">
-                <Icon className="w-5 h-5 text-primary" />
-              </div>
-              <div>
-                <div className="font-display text-lg text-foreground">{title}</div>
-                <p className="text-sm text-muted-foreground mt-1">{body}</p>
-              </div>
-            </div>
-          ))}
+      {/* SERVICES */}
+      <section
+        id="services"
+        style={{
+          padding: "90px 6%",
+          background: "#f8f8f8",
+          textAlign: "center",
+        }}
+      >
+        <p style={eyebrowStyle}>WHAT WE OFFER</p>
+
+        <h2 style={headingStyle}>Party Rentals For Every Occasion</h2>
+
+        <p style={paragraphStyle}>
+          Everything you need to create an amazing event, all in one place.
+        </p>
+
+        <div
+          style={{
+            maxWidth: 1100,
+            margin: "50px auto 0",
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+            gap: 25,
+          }}
+        >
+          <ServiceCard
+            icon="🎪"
+            title="Tents & Canopies"
+            text="Create the perfect outdoor space for your guests."
+          />
+
+          <ServiceCard
+            icon="🪑"
+            title="Tables & Chairs"
+            text="Comfortable and stylish seating for your celebration."
+          />
+
+          <ServiceCard
+            icon="✨"
+            title="Event Decor"
+            text="Beautiful decorations that bring your vision to life."
+          />
+
+          <ServiceCard
+            icon="🎉"
+            title="Party Packages"
+            text="Complete rental packages designed to make planning easy."
+          />
         </div>
       </section>
 
-      {/* CATEGORIES */}
-      <section className="mx-auto max-w-7xl px-5 md:px-8 py-20">
-        <div className="flex items-end justify-between mb-10">
+      {/* ABOUT */}
+      <section
+        id="about"
+        style={{
+          padding: "90px 6%",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <div
+          style={{
+            maxWidth: 1000,
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+            gap: 50,
+            alignItems: "center",
+          }}
+        >
           <div>
-            <div className="text-xs tracking-widest uppercase text-primary">{t("Our Rentals", "Nuestras Rentas")}</div>
-            <h2 className="mt-2 text-3xl md:text-5xl font-bold">{t("Everything your event needs", "Todo lo que su evento necesita")}</h2>
+            <p style={eyebrowStyle}>WHY NEW ERA?</p>
+
+            <h2 style={headingStyle}>
+              We help turn your event into an experience.
+            </h2>
           </div>
-          <Link to="/rentals" className="hidden md:inline text-primary hover:underline">{t("View all →", "Ver todo →")}</Link>
-        </div>
-        <div className="grid gap-5 md:grid-cols-3">
-          {[
-            { img: g2, title: t("Tables & Chairs", "Mesas y Sillas"), body: t("White chairs, black chairs, resting chairs & barstools.", "Sillas blancas, negras, de descanso y bancos altos.") },
-            { img: g1, title: t("Lighting, Sound & Stage", "Iluminación, Sonido y Escenario"), body: t("Marquee letters, uplighting, sound & stage.", "Letras luminosas, iluminación, sonido y escenario.") },
-            { img: g3, title: t("Backdrops & Decor", "Backdrops y Decoración"), body: t("Backdrops, throne chairs, draping & linens.", "Backdrops, sillas de trono, draping y manteles.") },
-          ].map((c) => (
-            <Link key={c.title} to="/rentals" className="group relative overflow-hidden rounded-2xl border border-border">
-              <img src={c.img} alt={c.title} className="w-full h-72 object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" width={1200} height={900} />
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
-              <div className="absolute bottom-0 left-0 p-6">
-                <div className="font-display text-2xl text-foreground">{c.title}</div>
-                <p className="text-sm text-muted-foreground mt-1">{c.body}</p>
-              </div>
-            </Link>
-          ))}
+
+          <div>
+            <p style={{ fontSize: 18, lineHeight: 1.8, color: "#555" }}>
+              At New Era Party Rentals, we believe every celebration deserves
+              to feel special. From intimate gatherings to large events, we
+              provide quality rentals and dependable service to help make your
+              event stress-free and memorable.
+            </p>
+
+            <p style={{ fontSize: 18, lineHeight: 1.8, color: "#555" }}>
+              Tell us what you're planning and we'll help you create the
+              perfect setup.
+            </p>
+          </div>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="mx-auto max-w-7xl px-5 md:px-8 pb-20">
-        <div className="relative overflow-hidden rounded-3xl border border-primary/30 p-10 md:p-16 text-center" style={{ background: "radial-gradient(1200px 400px at 50% 0%, oklch(0.78 0.16 85 / 0.20), transparent 60%), var(--color-card)" }}>
-          <h3 className="font-display text-3xl md:text-5xl font-bold">{t("Let's plan something", "Planeemos algo")} <span className="text-gradient-gold">{t("extraordinary", "extraordinario")}</span>.</h3>
-          <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">{t("Tell us about your event and receive a personalized quote within 24 hours.", "Cuéntenos sobre su evento y reciba una cotización personalizada en 24 horas.")}</p>
-          <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Link to="/quote" className="rounded-full bg-gradient-gold text-primary-foreground px-7 py-3.5 font-semibold shadow-gold">{t("Get a Free Quote", "Cotización Gratis")}</Link>
-            <a href={PHONE_HREF} className="rounded-full border border-primary/50 px-7 py-3.5 font-semibold text-foreground hover:bg-primary/10">{t("Call", "Llame")} {PHONE}</a>
+      <section
+        id="book"
+        style={{
+          padding: "90px 6%",
+          background: "#111",
+          color: "white",
+          textAlign: "center",
+        }}
+      >
+        <p style={{ ...eyebrowStyle, color: "#f5c542" }}>
+          READY TO PARTY?
+        </p>
+
+        <h2
+          style={{
+            fontSize: "clamp(35px, 5vw, 55px)",
+            margin: "10px 0 20px",
+          }}
+        >
+          Let's plan your event.
+        </h2>
+
+        <p
+          style={{
+            maxWidth: 600,
+            margin: "0 auto 35px",
+            color: "#ccc",
+            fontSize: 18,
+            lineHeight: 1.6,
+          }}
+        >
+          Contact New Era Party Rentals today to check availability and get
+          started.
+        </p>
+
+        <a
+          href="#contact"
+          style={{
+            ...buttonStyle,
+            background: "#f5c542",
+            color: "#111",
+            padding: "16px 32px",
+            display: "inline-block",
+          }}
+        >
+          Get a Quote
+        </a>
+      </section>
+
+      {/* CONTACT */}
+      <section
+        id="contact"
+        style={{
+          padding: "80px 6%",
+          textAlign: "center",
+        }}
+      >
+        <p style={eyebrowStyle}>CONTACT US</p>
+
+        <h2 style={headingStyle}>Let's make your event happen.</h2>
+
+        <div
+          style={{
+            marginTop: 35,
+            display: "flex",
+            justifyContent: "center",
+            gap: 20,
+            flexWrap: "wrap",
+          }}
+        >
+          <div style={contactBoxStyle}>
+            <strong>📞 Phone</strong>
+            <p>Add your phone number</p>
+          </div>
+
+          <div style={contactBoxStyle}>
+            <strong>✉️ Email</strong>
+            <p>Add your email address</p>
+          </div>
+
+          <div style={contactBoxStyle}>
+            <strong>📍 Location</strong>
+            <p>Los Angeles, California</p>
           </div>
         </div>
       </section>
-    </Layout>
+
+      {/* FOOTER */}
+      <footer
+        style={{
+          background: "#111",
+          color: "#aaa",
+          padding: "30px 6%",
+          textAlign: "center",
+        }}
+      >
+        <p style={{ margin: 0 }}>
+          © {new Date().getFullYear()} New Era Party Rentals. All rights
+          reserved.
+        </p>
+      </footer>
+    </div>
   );
 }
+
+function ServiceCard({
+  icon,
+  title,
+  text,
+}: {
+  icon: string;
+  title: string;
+  text: string;
+}) {
+  return (
+    <div
+      style={{
+        background: "#fff",
+        padding: 35,
+        borderRadius: 12,
+        textAlign: "center",
+        boxShadow: "0 5px 25px rgba(0,0,0,0.06)",
+      }}
+    >
+      <div style={{ fontSize: 45, marginBottom: 20 }}>{icon}</div>
+
+      <h3 style={{ fontSize: 22, marginBottom: 12 }}>{title}</h3>
+
+      <p style={{ color: "#666", lineHeight: 1.6 }}>{text}</p>
+    </div>
+  );
+}
+
+const linkStyle = {
+  color: "#222",
+  textDecoration: "none",
+  fontWeight: 600,
+};
+
+const buttonStyle = {
+  background: "#111",
+  color: "#fff",
+  textDecoration: "none",
+  padding: "12px 20px",
+  borderRadius: 6,
+  fontWeight: "bold",
+};
+
+const eyebrowStyle = {
+  fontSize: 13,
+  letterSpacing: 3,
+  fontWeight: "bold",
+  color: "#777",
+};
+
+const headingStyle = {
+  fontSize: "clamp(32px, 5vw, 50px)",
+  lineHeight: 1.15,
+  margin: "10px 0 20px",
+};
+
+const paragraphStyle = {
+  maxWidth: 650,
+  margin: "0 auto",
+  color: "#666",
+  fontSize: 18,
+  lineHeight: 1.6,
+};
+
+const contactBoxStyle = {
+  minWidth: 220,
+  padding: 25,
+  background: "#f8f8f8",
+  borderRadius: 10,
+};
